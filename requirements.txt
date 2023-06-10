@@ -4,7 +4,6 @@ tensorboard
 timm==0.6.7
 tqdm
 numpy
-torch==1.14.0
 dahuffman==0.4.1
 decord==0.6.0
 torchvision
