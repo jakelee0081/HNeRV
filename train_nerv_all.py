@@ -21,6 +21,13 @@ from dahuffman import HuffmanCodec
 from torchvision.utils import save_image
 import pandas as pd
 
+try :
+    import vessl
+    vessl.init()
+except:
+    print("Vessl not found")
+    pass
+
 def main():
     parser = argparse.ArgumentParser()
     # Dataset parameters
@@ -267,7 +274,8 @@ def train(local_rank, args):
                 f.write(print_str + '\n\n')        
             args.train_time, args.cur_epoch = 0, args.epochs
             Dump2CSV(args, best_metric_list, results_list, [torch.tensor(0)], 'eval.csv')
-
+        vessl.upload(args.outf)
+        vessl.finish()
         return
 
     # Training
